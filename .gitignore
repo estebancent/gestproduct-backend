@@ -1,0 +1,47 @@
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Laravel core
+/vendor
+/node_modules
+
+/public/build
+/public/hot
+/public/storage
+
+# Storage (ignorar contenido pero no carpetas base)
+/storage/*
+!/storage/app/public
+!/storage/framework
+!/storage/logs
+
+# Cache
+/bootstrap/cache/*.php
+
+# Testing
+.phpunit.result.cache
+.phpunit.cache
+
+# IDEs
+/.idea
+/.vscode
+/.fleet
+/.zed
+/.nova
+
+# Misc
+auth.json
+.phpactor.json
+
+# Laravel VM
+Homestead.json
+Homestead.yaml
