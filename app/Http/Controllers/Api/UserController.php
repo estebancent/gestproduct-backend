@@ -11,14 +11,13 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-   public function index()
+public function index()
 {   
-    if (auth()->user()->role->name !== 'admin') {
-    return response()->json(['message' => 'No autorizado'], 403);
+    // ✅ Usando el método del modelo
+    if (!auth()->user()->isAdmin()) {
+        return response()->json(['message' => 'No autorizado'], 403);
     }
-    $users = User::with('role')->get();
-    
-    return response()->json($users);
+    return response()->json(User::with('role')->get());
 }
     /**
      * Store a newly created resource in storage.
@@ -41,7 +40,7 @@ class UserController extends Controller
         'is_active' => 'boolean',
     ]);
 
-    $validated['password'] = Hash::make($validated['password']);
+    //$validated['password'] = Hash::make($validated['password']);
 
     $user = User::create($validated);
 
@@ -81,9 +80,9 @@ class UserController extends Controller
     ]);
 
     // Si viene password, la hasheamos
-    if (isset($validated['password'])) {
-        $validated['password'] = Hash::make($validated['password']);
-    }
+    //if (isset($validated['password'])) {
+      //  $validated['password'] = Hash::make($validated['password']);
+    //}
 
     $user->update($validated);
 

@@ -18,7 +18,7 @@ class AdminUserSeeder extends Seeder
         User::firstOrCreate(
             ['email' => 'admin@admin.com'], // evita duplicados
             [
-                'name' => 'Administrador',
+                'name' => 'Esteban Centurion',
                 'password' => 'admin123', //  se hashea solo
                 'phone' => '123456789',
                 'dni' => '12345678',

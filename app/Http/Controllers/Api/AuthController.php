@@ -46,6 +46,11 @@ class AuthController extends Controller
             'message' => 'Credenciales incorrectas'
         ], 401);
     }
+    if (!$user->is_active) {
+    return response()->json([
+        'message' => 'Usuario inactivo'
+    ], 403);
+    }
 
     $token = $user->createToken('api-token')->plainTextToken;
 
