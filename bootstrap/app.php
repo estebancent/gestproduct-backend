@@ -17,12 +17,14 @@ return Application::configure(basePath: dirname(__DIR__))
         //
             // 🔐 Sanctum SPA
         $middleware->statefulApi();
-
+           // Agrega esto para forzar que el CORS se procese siempre
+        $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
         // 🔐 Middleware de roles
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,
         ]);
     })
+    
     ->withExceptions(function (Exceptions $exceptions): void {
       $exceptions->render(function (\Illuminate\Auth\AuthenticationException $e, Request $request) {
             if ($request->is('api/*')) {
