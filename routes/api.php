@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductVariantController;
+use Illuminate\Support\Facades\Artisan;
 
 // 🔓 Pública 
 Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1'); 
@@ -56,3 +57,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('{id}/restore', [SupplierController::class, 'restore']);
         Route::patch('{id}/toggle', [SupplierController::class, 'toggleActive']);
     });
+    // routes/api.php
+Route::get('/clear-cache', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    return "Caché limpia";
+});
