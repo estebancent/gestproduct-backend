@@ -15,15 +15,20 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         //
+        // 🛡️ Solo quitamos el CSRF porque usamos Tokens de API.
+        // Tu seguridad ahora depende del 'Bearer Token' que manejas en Vue.
+        $middleware->validateCsrfTokens(except: [
+            'api/*', 
+        ]);
             // 🔐 Sanctum SPA
         $middleware->statefulApi();
-           // Agrega esto para forzar que el CORS se procese siempre
-        $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
+       
         // 🔐 Middleware de roles
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,
         ]);
     })
+    
     
     ->withExceptions(function (Exceptions $exceptions): void {
       $exceptions->render(function (\Illuminate\Auth\AuthenticationException $e, Request $request) {
