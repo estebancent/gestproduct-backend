@@ -35,13 +35,24 @@ return [
 
 ]; */
 return [
-    'paths' => ['api/*', 'sanctum/csrf-cookie', 'login'],
+
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+
     'allowed_methods' => ['*'],
-    'allowed_origins' => ['*'], // <--- ESTO PERMITE TODO (Solo para probar)
+
+    'allowed_origins' => [
+        'https://gestproduct-frontend-production.up.railway.app',
+        'http://localhost:5173'], // 🔥 CLAVE
+
     'allowed_origins_patterns' => [],
+
     'allowed_headers' => ['*'],
+
     'exposed_headers' => [],
+
     'max_age' => 0,
-    'supports_credentials' => true,
+
+    'supports_credentials' => true, // Importante si usas Sanctum
+
 ];
 
