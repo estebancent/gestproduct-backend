@@ -57,7 +57,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('{id}/restore', [SupplierController::class, 'restore']);
         Route::patch('{id}/toggle', [SupplierController::class, 'toggleActive']);
     });
-    // routes/api.php
+    // routes/api.php para limpiar caché (útil en producción)
 Route::get('/clear-cache', function () {
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
