@@ -19,10 +19,14 @@ Thumbs.db
 /public/storage
 
 # Storage (ignorar contenido pero no carpetas base)
-/storage/*
-!/storage/app/public
-!/storage/framework
-!/storage/logs
+
+/storage/app/*
+!/storage/app/public/
+/storage/framework/*
+!/storage/framework/cache/
+!/storage/framework/sessions/
+!/storage/framework/views/
+/storage/logs/*
 
 # Cache
 /bootstrap/cache/*.php
